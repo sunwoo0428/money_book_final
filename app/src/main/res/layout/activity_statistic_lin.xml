@@ -1,0 +1,13 @@
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/stats_lin"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+        <Button
+    android:id="@+id/btn_selectDateLin"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="날짜를 선택하시오"/>
+
+</LinearLayout>

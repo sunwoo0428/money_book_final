@@ -1,0 +1,124 @@
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/inc_exp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/insertExpense"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+         <EditText
+        android:id="@+id/et_expense"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:inputType="number"
+        android:hint="expense"/>
+
+            <Button
+        android:id="@+id/btn_excategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="카테고리"/>
+
+            <Button
+        android:id="@+id/btn_insertExDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="날짜"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/insertExpense1"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <Button
+        android:id="@+id/btn_insertEx"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="insert expense"/>
+
+            <Button
+        android:id="@+id/btn_dropEx"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Drop Expense"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/insertIncome"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+         <EditText
+        android:id="@+id/et_income"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:inputType="number"
+        android:hint="income"/>
+             
+            <Button
+        android:id="@+id/btn_incategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="카테고리"/>
+
+            <Button
+        android:id="@+id/btn_insertInDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="날짜"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/insertIncome1"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <Button
+        android:id="@+id/btn_insertIn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="insert income"/>
+             
+            <Button
+        android:id="@+id/btn_dropIn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Drop Income"/>
+
+    </LinearLayout>
+
+        <TextView
+    android:id="@+id/ex_result"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:hint="expense result"/>
+
+        <TextView
+    android:id="@+id/in_result"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:hint="income result"/>
+
+
+
+
+</LinearLayout>

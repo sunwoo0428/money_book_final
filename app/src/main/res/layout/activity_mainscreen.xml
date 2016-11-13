@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/mainscreen"
+    android:padding="100dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+        <TextView
+    android:id="@+id/weekly_expense"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:hint="weekly expense"/>
+        <TextView
+    android:id="@+id/notyet1"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:hint="몰라요"/>
+        <TextView
+    android:id="@+id/monthly_expense"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:hint="monthly expense"/>
+        <TextView
+    android:id="@+id/notyet2"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:hint="몰라요"/>
+</LinearLayout>
