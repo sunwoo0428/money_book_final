@@ -44,7 +44,6 @@ public class MainActivity extends TabActivity {
 
         try{
             SharedPreferences mPref = getSharedPreferences("isFirst", Activity.MODE_PRIVATE);
-
             Boolean bFirst = mPref.getBoolean("isFirst", false);
             if(bFirst == false)
             {
@@ -52,9 +51,14 @@ public class MainActivity extends TabActivity {
                 SharedPreferences.Editor editor = mPref.edit();
                 editor.putBoolean("isFirst", true);
                 editor.commit();
-                dbBudget.createTable("CREATE TABLE MONEY_BUD( _id INTEGER PRIMARY KEY AUTOINCREMENT, budget INTEGER, period INTEGER);");
-                dbIncome.createTable("CREATE TABLE MONEY_IN( _id INTEGER PRIMARY KEY AUTOINCREMENT, income INTEGER, category TEXT, year INTEGER, month INTEGER, day INTEGER);");
+
+                dbExpense.drop("DROP TABLE IF EXISTS MONEY_EX");
                 dbExpense.createTable("CREATE TABLE MONEY_EX( _id INTEGER PRIMARY KEY AUTOINCREMENT, expense INTEGER, category TEXT, year INTEGER, month INTEGER, day INTEGER);");
+                dbIncome.drop("DROP TABLE IF EXISTS MONEY_IN");
+                dbIncome.createTable("CREATE TABLE MONEY_IN( _id INTEGER PRIMARY KEY AUTOINCREMENT, income INTEGER, category TEXT, year INTEGER, month INTEGER, day INTEGER);");
+                dbBudget.drop("DROP TABLE IF EXISTS MONEY_BUD");
+                dbBudget.createTable("CREATE TABLE MONEY_BUD( _id INTEGER PRIMARY KEY AUTOINCREMENT, budget INTEGER, period INTEGER);");
+                dbBudget.insert("insert into MONEY_BUD values(null, "+50000+", "+5+");");
 
                 intent = new Intent().setClass(this, budget_view.class);
                 spec = mTabHost.newTabSpec("tab3").setIndicator("예산").setContent(intent);

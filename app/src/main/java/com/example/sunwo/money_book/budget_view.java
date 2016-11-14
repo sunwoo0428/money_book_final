@@ -24,8 +24,15 @@ public class budget_view extends AppCompatActivity {
         final TextView bdgResult = (TextView) findViewById(R.id.total_bdg);
         final TextView recResult = (TextView) findViewById(R.id.recommend_mny);
 
-        bdgResult.setText( dbBudget.PrintDataBudget() );
-        recResult.setText( dbBudget.PrintDataRecommend() );
+        String temp = String.valueOf(dbBudget.getBid());
+
+        if(dbBudget.getBid()==2){
+            bdgResult.setText( dbBudget.PrintDataBudget() );
+            recResult.setText( dbBudget.PrintDataRecommend() );
+  //          bdgResult.setText(temp);
+    //        recResult.setText(dbBudget.PrintDataTesting());
+        }
+
 
         Button btnDropBdg = (Button) findViewById(R.id.btn_dropBdg);
         btnDropBdg.setOnClickListener(new View.OnClickListener() {

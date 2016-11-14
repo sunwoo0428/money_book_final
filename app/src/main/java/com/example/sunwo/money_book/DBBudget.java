@@ -84,16 +84,13 @@ public class DBBudget extends SQLiteOpenHelper {
 
     public int getBid() {
         SQLiteDatabase db = getReadableDatabase();
-        int budget = 0;
-        int countTuple = 0;
+        int bid = 0;
 
         Cursor countT = db.rawQuery("select * from MONEY_BUD", null);
         while(countT.moveToNext()){
-            countTuple++;
+            bid = countT.getInt(0);
         }
-
-
-        if(countTuple == 1){
+        if(bid == 1){
             return -1;
         }
         else {
@@ -103,5 +100,22 @@ public class DBBudget extends SQLiteOpenHelper {
             return budget; */
             return 2;
         }
+    }
+
+    public String PrintDataTesting() {
+        SQLiteDatabase db = getReadableDatabase();
+        String str = "";
+
+        Cursor cursor = db.rawQuery("select * from MONEY_BUD", null);
+        while(cursor.moveToNext()) {
+            str += cursor.getInt(0)
+                    + " : bid "
+                    + cursor.getInt(1)
+                    + ", budget = "
+                    + cursor.getInt(2)
+                    + ", period = "
+                    + "\n";
+        }
+        return str;
     }
 }
