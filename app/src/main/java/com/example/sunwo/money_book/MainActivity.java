@@ -20,6 +20,8 @@ public class MainActivity extends TabActivity {
         Intent intent;
         context = this;
 
+        final DBExpense dbExpense = new DBExpense(getApplicationContext(), "money_ex.db", null, 1);
+        final DBIncome dbIncome = new DBIncome(getApplicationContext(), "money_in.db", null, 1);
         final DBBudget dbBudget = new DBBudget(getApplicationContext(), "money_bdg.db", null, 1);
 
         super.onCreate(savedInstanceState);
@@ -50,6 +52,10 @@ public class MainActivity extends TabActivity {
                 SharedPreferences.Editor editor = mPref.edit();
                 editor.putBoolean("isFirst", true);
                 editor.commit();
+                dbBudget.createTable("CREATE TABLE MONEY_BUD( _id INTEGER PRIMARY KEY AUTOINCREMENT, budget INTEGER, period INTEGER);");
+                dbIncome.createTable("CREATE TABLE MONEY_IN( _id INTEGER PRIMARY KEY AUTOINCREMENT, income INTEGER, category TEXT, year INTEGER, month INTEGER, day INTEGER);");
+                dbExpense.createTable("CREATE TABLE MONEY_EX( _id INTEGER PRIMARY KEY AUTOINCREMENT, expense INTEGER, category TEXT, year INTEGER, month INTEGER, day INTEGER);");
+
                 intent = new Intent().setClass(this, budget_view.class);
                 spec = mTabHost.newTabSpec("tab3").setIndicator("예산").setContent(intent);
                 mTabHost.addTab(spec);
