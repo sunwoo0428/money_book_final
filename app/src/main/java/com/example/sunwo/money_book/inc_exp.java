@@ -75,15 +75,14 @@ public class inc_exp extends AppCompatActivity {
                     toast.show();
                 }
                 else{
-                    if(dbBudget.getBid()==1){
-
+                    if(dbBudget.getBid()==2){
                         dbExpense.insert("insert into MONEY_EX values(null, " + expense + ", '" + exCategory + "'," + exYear + "," + exMonth + "," + exDay + ");");
                         exResult.setText(dbExpense.PrintData());
                         int currentBudget = dbBudget.getBudget();
                         int updatedBudget = currentBudget - Integer.parseInt(expense);
-                        dbBudget.update("update MONEY_BUD set budget = " + updatedBudget + " where _id = " + 1 + ";");
+                        dbBudget.update("update MONEY_BUD set budget = " + updatedBudget + " where _id = " + 2 + ";");
                     }
-                    else{ //예산 없을때 구현 어떻게 하지?ㄷㄷㄷ
+                    else if(dbBudget.getBid()==-1){ //예산 없을때 구현 어떻게 하지?ㄷㄷㄷ
                         dbExpense.insert("insert into MONEY_EX values(null, " + expense + ", '" + exCategory + "'," + exYear + "," + exMonth + "," + exDay + ");");
                         exResult.setText(dbExpense.PrintData());
                         Toast toast = Toast.makeText(getApplicationContext(), "등록된 예산이 없습니다", Toast.LENGTH_SHORT);
@@ -98,7 +97,6 @@ public class inc_exp extends AppCompatActivity {
 
             public void onClick(View v) {
                 String income = etIncome.getText().toString();
-
                 if(income.equals("")||inYear==0||inCategory.equals("")){
                     Toast toast = Toast.makeText(getApplicationContext(), "수입/카테고리/날짜를 모두 입력하시오", Toast.LENGTH_SHORT);
                     toast.show();
@@ -107,7 +105,6 @@ public class inc_exp extends AppCompatActivity {
                     dbIncome.insert("insert into MONEY_IN values(null, " + income + ", '" + inCategory + "'," + inYear + "," + inMonth + "," + inDay + ");");
                     inResult.setText(dbIncome.PrintData());
                 }
-
             }
         });
 

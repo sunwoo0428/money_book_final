@@ -54,10 +54,9 @@ public class DBBudget extends SQLiteOpenHelper {
         String str = "";
 
         Cursor cursor = db.rawQuery("select * from MONEY_BUD", null);
-        while(cursor.moveToNext()) {
-            str +=  " Total Budget = "
-                    + cursor.getInt(1) + "\n";
-        }
+        cursor.moveToNext();
+        cursor.moveToNext();
+        str =  " Total Budget = "+ cursor.getInt(1) + "\n";
         return str;
     }
     public String PrintDataRecommend() {
@@ -65,10 +64,10 @@ public class DBBudget extends SQLiteOpenHelper {
         String str = "";
 
         Cursor cursor = db.rawQuery("select * from MONEY_BUD", null);
-        while(cursor.moveToNext()) {
-            str +=  " Recommended usage = "
+        cursor.moveToNext();
+        cursor.moveToNext();
+            str =  " Recommended usage = "
                     + cursor.getInt(1)/cursor.getInt(2) + "\n";
-        }
         return str;
     }
 
@@ -78,6 +77,7 @@ public class DBBudget extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery("select * from MONEY_BUD", null);
         cursor.moveToNext();
+        cursor.moveToNext();
         budget = cursor.getInt(1);
         return budget;
     }
@@ -85,10 +85,23 @@ public class DBBudget extends SQLiteOpenHelper {
     public int getBid() {
         SQLiteDatabase db = getReadableDatabase();
         int budget = 0;
+        int countTuple = 0;
 
-        Cursor cursor = db.rawQuery("select _id from MONEY_BUD", null);
-        cursor.moveToNext();
-        budget = cursor.getInt(0);
-        return budget;
+        Cursor countT = db.rawQuery("select * from MONEY_BUD", null);
+        while(countT.moveToNext()){
+            countTuple++;
+        }
+
+
+        if(countTuple == 1){
+            return -1;
+        }
+        else {
+      /*      Cursor cursor = db.rawQuery("select * from MONEY_BUD", null);
+            cursor.moveToNext();
+            budget = cursor.getInt(0);
+            return budget; */
+            return 2;
+        }
     }
 }

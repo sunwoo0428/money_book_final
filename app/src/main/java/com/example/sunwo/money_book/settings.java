@@ -31,6 +31,7 @@ public class settings extends AppCompatActivity {
 
                 dbBudget.drop("DROP TABLE IF EXISTS MONEY_BUD");
                 dbBudget.createTable("CREATE TABLE MONEY_BUD( _id INTEGER PRIMARY KEY AUTOINCREMENT, budget INTEGER, period INTEGER);");
+                dbBudget.insert("insert into MONEY_BUD values(null, "+50000+", "+5+");");
 
                 Toast toast = Toast.makeText(getApplicationContext(), "초기화 되었습니다.", Toast.LENGTH_SHORT);
                 toast.show();
