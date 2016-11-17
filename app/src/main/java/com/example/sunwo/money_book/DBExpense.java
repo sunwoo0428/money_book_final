@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBExpense extends SQLiteOpenHelper {
 
+   public ExpenseStruct[] expenseStructs = new ExpenseStruct[10];
+
     public DBExpense(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -15,7 +17,8 @@ public class DBExpense extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // 새로운 테이블을 생성한다.
         // cr)eate table 테이블명 (컬럼명 타입 옵션;
-        db.execSQL("CREATE TABLE MONEY_EX( _id INTEGER PRIMARY KEY AUTOINCREMENT, expense INTEGER, category TEXT, year INTEGER, month INTEGER, day INTEGER);");
+        db.execSQL("CREATE TABLE MONEY_EX( _id INTEGER PRIMARY KEY AUTOINCREMENT, expense INTEGER, category TEXT, " +
+                "year INTEGER, month INTEGER, day INTEGER, paymentMethod TEXT, description TEXT);");
     }
 
 
@@ -62,9 +65,23 @@ public class DBExpense extends SQLiteOpenHelper {
                     + cursor.getInt(4)
                     + "/"
                     + cursor.getInt(5)
+                    + ", "
+                    + cursor.getString(6)
+                    +", "
+                    + cursor.getString(7)
                     + "\n";
         }
         return str;
+    }
+
+    public void datasavepractice(){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from MONEY_EX", null);
+
+        while(cursor.moveToNext()){
+
+            expenseStructs[2].setDescription("");
+        }
     }
 
     public int GetTotalExpense(){

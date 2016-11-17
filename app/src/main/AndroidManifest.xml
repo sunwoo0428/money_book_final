@@ -23,7 +23,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".budget_new" />
-        <activity android:name=".budget_view"></activity>
+        <activity android:name=".budget_view" />
+        <activity android:name=".cat_exp" />
+        <activity android:name=".cat_inc"></activity>
     </application>
 
 </manifest>
