@@ -72,5 +72,10 @@ public class ListViewAdapterEx extends BaseAdapter {
         listViewItemEx.add(item);
     }
 
+    public void deleteAll(){
+        listViewItemEx.clear();
+
+    }
+
 
 }

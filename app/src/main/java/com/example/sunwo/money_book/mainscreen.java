@@ -15,9 +15,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class mainscreen extends AppCompatActivity {
 
     int type = 2;
+    String typeString[] = {"","","미등록"};
     String dateTemp[] = {"",""};
     int Date[] = {20000000,20000000};
     final int DIALOG_START_DATE = 0;
@@ -29,6 +32,9 @@ public class mainscreen extends AppCompatActivity {
     String dateString = "";
     int dateInt = 20000000;
     int listViewCount = 0;
+    TextView typeselected;
+    TextView start_date;
+    TextView end_date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,9 @@ public class mainscreen extends AppCompatActivity {
         final ListViewAdapterEx adapter;
 
         final TextView testing = (TextView)findViewById(R.id.notyet1);
+        typeselected = (TextView)findViewById(R.id.type1);
+        start_date = (TextView)findViewById(R.id.start_date);
+        end_date = (TextView)findViewById(R.id.end_date);
 
         // Adapter 생성
         adapter = new ListViewAdapterEx() ;
@@ -61,7 +70,6 @@ public class mainscreen extends AppCompatActivity {
         btnSelectStartDate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 showDialog(DIALOG_START_DATE);
-
             }
         });
 
@@ -75,20 +83,25 @@ public class mainscreen extends AppCompatActivity {
         Button btnFind = (Button) findViewById(R.id.find);
         btnFind.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-  /*              if(type ==0){
-
+                if(type ==0){
+                    adapter.deleteAll();
+                    listViewCount = dbExpense.searchExpense(Date[0],Date[1]);
+                    for(int i = 0;i<listViewCount;i++){
+                        adapter.addItem(dbExpense.expenseStructs[i].getAmount(), dbExpense.expenseStructs[i].getDate(),
+                                dbExpense.expenseStructs[i].getCategory(), dbExpense.expenseStructs[i].getMethod(), dbExpense.expenseStructs[i].getDescription()) ;
+                    }
                 }
                 else if(type == 1){
-
+                    adapter.deleteAll();
+                    listViewCount = dbIncome.searchIncome(Date[0],Date[1]);
+                    for(int i = 0;i<listViewCount;i++){
+                        adapter.addItem(dbIncome.incomeStructs[i].getAmount(), dbIncome.incomeStructs[i].getDate(),
+                                dbIncome.incomeStructs[i].getCategory(), dbIncome.incomeStructs[i].getMethod(), dbIncome.incomeStructs[i].getDescription()) ;
+                    }
                 }
                 else{
-
-                } */
-
-                listViewCount = dbExpense.searchExpense(Date[0],Date[1]);
-               for(int i = 0;i<listViewCount;i++){
-                    adapter.addItem(dbExpense.expenseStructs[i].getAmount(), dbExpense.expenseStructs[i].getDate(),
-                            dbExpense.expenseStructs[i].getCategory(), dbExpense.expenseStructs[i].getMethod(), dbExpense.expenseStructs[i].getDescription()) ;
+                    Toast toast = Toast.makeText(getApplicationContext(), "지출 또는 수입을 선택하시오", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -118,10 +131,12 @@ public class mainscreen extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         type = whichButton;
+                        typeString[type] = items[type];
                     }
                 }).setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
+                        typeselected.setText(typeString[type]);
                     }
                 }).setNegativeButton("Cancel",
                 new DialogInterface.OnClickListener() {
@@ -153,8 +168,15 @@ public class mainscreen extends AppCompatActivity {
 
                 dateInt = Integer.parseInt(dateString);
                 Date[id] = dateInt;
+
+                if(id == 0)
+                    start_date.setText(dateTemp[0]);
+                else
+                    end_date.setText(dateTemp[1]);
             }
         },2016,11,11);
+
+
         return dpd;
     }
 

@@ -27,7 +27,7 @@ public class settings extends AppCompatActivity {
                 dbExpense.createTable("CREATE TABLE MONEY_EX( _id INTEGER PRIMARY KEY AUTOINCREMENT, expense INTEGER, category TEXT, " +
                         "date INTEGER, paymentMethod TEXT, description TEXT);");
                 dbIncome.drop("DROP TABLE IF EXISTS MONEY_IN");
-                dbIncome.createTable("CREATE TABLE MONEY_IN( _id INTEGER PRIMARY KEY AUTOINCREMENT, income INTEGER, category TEXT, year INTEGER," +
+                dbIncome.createTable("CREATE TABLE MONEY_IN( _id INTEGER PRIMARY KEY AUTOINCREMENT, income INTEGER, category TEXT, date INTEGER," +
                         "incomeMethod TEXT, description TEXT);");
 
                 dbBudget.drop("DROP TABLE IF EXISTS MONEY_BUD");

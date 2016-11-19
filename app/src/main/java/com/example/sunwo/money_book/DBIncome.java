@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBIncome extends SQLiteOpenHelper {
 
+    public IncomeStruct[] incomeStructs = new IncomeStruct[100];
+
     public DBIncome(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -71,5 +73,25 @@ public class DBIncome extends SQLiteOpenHelper {
         }
 
         return str;
+    }
+
+    public int searchIncome(int startDate, int endDate){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from MONEY_IN where date >= "+startDate+" and date <="+ endDate+"", null);
+        int count = 0;
+        for(int i=0; i<incomeStructs.length; i++){
+            incomeStructs[i] = new IncomeStruct();
+        }
+        while(cursor.moveToNext()){
+            String tempAmount = String.valueOf(cursor.getInt(1));
+            String tempDate = String.valueOf(cursor.getInt(3));
+            incomeStructs[count].setAmount(tempAmount);
+            incomeStructs[count].setCategory(cursor.getString(2));
+            incomeStructs[count].setDate(tempDate);
+            incomeStructs[count].setMethod(cursor.getString(4));
+            incomeStructs[count].setDescription(cursor.getString(5));
+            count++;
+        }
+        return count;
     }
 }
