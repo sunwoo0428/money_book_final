@@ -38,7 +38,6 @@ public class ListViewAdapterEx extends BaseAdapter {
         TextView dateTextView = (TextView) convertView.findViewById(R.id.textView2) ;
         TextView categoryTextView = (TextView) convertView.findViewById(R.id.textView3) ;
         TextView methodTextView = (TextView) convertView.findViewById(R.id.textView4) ;
-        TextView desTextView = (TextView) convertView.findViewById(R.id.textView5) ;
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         Listview_expense listViewItem = listViewItemEx.get(position);
@@ -48,7 +47,6 @@ public class ListViewAdapterEx extends BaseAdapter {
         dateTextView.setText(listViewItem.getDate());
         categoryTextView.setText(listViewItem.getCategory());
         methodTextView.setText(listViewItem.getMethod());
-        desTextView.setText(listViewItem.getDescription());
 
         return convertView;
     }

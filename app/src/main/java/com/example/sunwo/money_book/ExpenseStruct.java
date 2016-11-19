@@ -10,6 +10,8 @@ public class ExpenseStruct {
     public String method = "";
     public String description = "";
 
+    public ExpenseStruct(){};
+
     public void setAmount(String amount) {
         this.amount = amount;
     }

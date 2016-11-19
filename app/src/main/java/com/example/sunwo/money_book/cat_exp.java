@@ -22,6 +22,10 @@ public class cat_exp extends AppCompatActivity {
     String exCategory="미등록";
     String exMethod = "미등록";
     String exDescription = "미등록";
+    String dateString = "";
+    int dateInt = 20000000;
+    String tempMonth = "";
+    String tempDate="";
     int exYear = 0;
     int exMonth = 0;
     int exDay = 0;
@@ -77,7 +81,7 @@ public class cat_exp extends AppCompatActivity {
             public void onClick(View v) {
                     if(dbBudget.getBid()==2){
                         dbExpense.insert("insert into MONEY_EX values(null, " + amount + ", '" + exCategory + "',"
-                                + exYear + "," + exMonth + "," + exDay + ", '"+exMethod+"' , '"+exDescription+"');");
+                                + dateInt + ", '"+exMethod+"' , '"+exDescription+"');");
                         exResult.setText(dbExpense.PrintData());
                         int currentBudget = dbBudget.getBudget();
                         int updatedBudget = currentBudget - Integer.parseInt(amount);
@@ -85,7 +89,7 @@ public class cat_exp extends AppCompatActivity {
                     }
                     else if(dbBudget.getBid()==-1){ //예산 없을때 구현 어떻게 하지?ㄷㄷㄷ
                         dbExpense.insert("insert into MONEY_EX values(null, " + amount + ", '" + exCategory + "',"
-                                + exYear + "," + exMonth + "," + exDay + ", '"+exMethod+"' , '"+exDescription+"');");
+                                +dateInt + ", '"+exMethod+"' , '"+exDescription+"');");
                         exResult.setText(dbExpense.PrintData());
                         Toast toast = Toast.makeText(getApplicationContext(), "등록된 예산이 없습니다", Toast.LENGTH_SHORT);
                         toast.show();
@@ -153,9 +157,22 @@ public class cat_exp extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 //                Toast.makeText(getApplicationContext(),year+"년 "+(monthOfYear+1)+"월 "+dayOfMonth+ "일", Toast.LENGTH_SHORT).show();
-                exYear = year;
+//                exYear = year;
                 exMonth = monthOfYear+1;
                 exDay = dayOfMonth;
+                if(monthOfYear<9)
+                    tempMonth = "0"+exMonth;
+                else
+                    tempMonth = ""+exMonth;
+
+                if(exDay<10)
+                    tempDate = "0"+exDay;
+                else
+                    tempDate = ""+exDay;
+
+                dateString = ""+year+""+tempMonth+tempDate;
+
+                dateInt = Integer.parseInt(dateString);
             }
         },2016,11,11);
         return dpd;

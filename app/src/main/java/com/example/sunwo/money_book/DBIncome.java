@@ -14,7 +14,7 @@ public class DBIncome extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // 새로운 테이블을 생성한다.
         // cr)eate table 테이블명 (컬럼명 타입 옵션;
-        db.execSQL("CREATE TABLE MONEY_IN( _id INTEGER PRIMARY KEY AUTOINCREMENT, income INTEGER, category TEXT, year INTEGER, month INTEGER, day INTEGER," +
+        db.execSQL("CREATE TABLE MONEY_IN( _id INTEGER PRIMARY KEY AUTOINCREMENT, income INTEGER, category TEXT, date INTEGER," +
                 "incomeMethod TEXT, description TEXT);");
     }
 
@@ -63,14 +63,10 @@ public class DBIncome extends SQLiteOpenHelper {
                     + cursor.getString(2)
                     + ", Date = "
                     + cursor.getInt(3)
-                    + "/"
-                    + cursor.getInt(4)
-                    + "/"
-                    + cursor.getInt(5)
                     + ", "
-                    + cursor.getString(6)
+                    + cursor.getString(4)
                     +", "
-                    + cursor.getString(7)
+                    + cursor.getString(5)
                     + "\n";
         }
 

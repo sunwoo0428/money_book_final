@@ -8,17 +8,27 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class mainscreen extends AppCompatActivity {
 
     int type = 2;
-    String Date[] = {"",""};
+    String dateTemp[] = {"",""};
+    int Date[] = {20000000,20000000};
     final int DIALOG_START_DATE = 0;
     final int DIALOG_END_DATE = 1;
+    int exMonth = 0;
+    int exDay = 0;
+    String tempMonth = "";
+    String tempDate = "";
+    String dateString = "";
+    int dateInt = 20000000;
+    int listViewCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +40,8 @@ public class mainscreen extends AppCompatActivity {
 
         ListView listview ;
         final ListViewAdapterEx adapter;
+
+        final TextView testing = (TextView)findViewById(R.id.notyet1);
 
         // Adapter 생성
         adapter = new ListViewAdapterEx() ;
@@ -72,14 +84,29 @@ public class mainscreen extends AppCompatActivity {
                 else{
 
                 } */
-                adapter.addItem("2만원", Date[0], "카테고리", "현금", "상세설명 어쩌구") ;
-                adapter.addItem("3만원", Date[1], "카테고리", "현금", "상세설명 어쩌구") ;
+
+                listViewCount = dbExpense.searchExpense(Date[0],Date[1]);
+               for(int i = 0;i<listViewCount;i++){
+                    adapter.addItem(dbExpense.expenseStructs[i].getAmount(), dbExpense.expenseStructs[i].getDate(),
+                            dbExpense.expenseStructs[i].getCategory(), dbExpense.expenseStructs[i].getMethod(), dbExpense.expenseStructs[i].getDescription()) ;
+                }
                 adapter.notifyDataSetChanged();
             }
         });
 
         // 첫 번째 아이템 추가.
         adapter.addItem("금액", "yyyy/mm/dd", "카테고리", "지불방법", "상세설명 어쩌구") ;
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
+                // get item
+                Listview_expense item = (Listview_expense) parent.getItemAtPosition(position) ;
+                String description = item.getDescription();
+                alert(description);
+            }
+        }) ;
+
 
     }
 
@@ -109,10 +136,41 @@ public class mainscreen extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 //                Toast.makeText(getApplicationContext(),year+"년 "+(monthOfYear+1)+"월 "+dayOfMonth+ "일", Toast.LENGTH_SHORT).show();
-                int temp = monthOfYear+1;
-                Date[id] = ""+year+"년 "+temp+"월 "+dayOfMonth+"일";
+                exMonth = monthOfYear+1;
+                exDay = dayOfMonth;
+                if(monthOfYear<9)
+                    tempMonth = "0"+exMonth;
+                else
+                    tempMonth = ""+exMonth;
+
+                if(exDay<10)
+                    tempDate = "0"+exDay;
+                else
+                    tempDate = ""+exDay;
+
+                dateString = ""+year+""+tempMonth+tempDate;
+                dateTemp[id] = dateString;
+
+                dateInt = Integer.parseInt(dateString);
+                Date[id] = dateInt;
             }
         },2016,11,11);
         return dpd;
+    }
+
+    private void alert(String message)
+    {
+        new AlertDialog.Builder(this)
+                .setTitle("상세설명")
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("확인", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
 }

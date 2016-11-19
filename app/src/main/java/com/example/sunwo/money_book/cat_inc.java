@@ -22,6 +22,10 @@ public class cat_inc extends AppCompatActivity {
     String amount = "";
     String inMethod = "미등록";
     String inDescription = "미등록";
+    String tempMonth ="";
+    String tempDate = "";
+    String dateString ="";
+    int dateInt = 20000000;
     int inYear = 0;
     int inMonth = 0;
     int inDay = 0;
@@ -75,7 +79,7 @@ public class cat_inc extends AppCompatActivity {
         btnInsertIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                     dbIncome.insert("insert into MONEY_IN values(null, " + amount + ", '" + inCategory + "',"
-                            + inYear + "," + inMonth + "," + inDay + ", '"+inMethod+"' , '"+inDescription+"');");
+                            + dateInt + ", '"+inMethod+"' , '"+inDescription+"');");
                     inResult.setText(dbIncome.PrintData());
                 }
         });
@@ -141,9 +145,22 @@ public class cat_inc extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 //                Toast.makeText(getApplicationContext(),year+"년 "+(monthOfYear+1)+"월 "+dayOfMonth+ "일", Toast.LENGTH_SHORT).show();
-                inYear = year;
+//                exYear = year;
                 inMonth = monthOfYear+1;
                 inDay = dayOfMonth;
+                if(monthOfYear<9)
+                    tempMonth = "0"+inMonth;
+                else
+                    tempMonth = ""+inMonth;
+
+                if(inDay<10)
+                    tempDate = "0"+inDay;
+                else
+                    tempDate = ""+inDay;
+
+                dateString = ""+year+""+tempMonth+tempDate;
+
+                dateInt = Integer.parseInt(dateString);
             }
         },2016,11,11);
         return dpd;

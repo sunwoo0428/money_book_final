@@ -7,8 +7,6 @@ import android.os.Bundle;
 
 public class Loading extends AppCompatActivity {
 
-    static int count = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +17,7 @@ public class Loading extends AppCompatActivity {
     private class splashhandler implements Runnable{
         public void run() {
             startActivity(new Intent(getApplication(), MainActivity.class)); // 로딩이 끝난후 이동할 Activity
+            finish();
             }
     }
 }

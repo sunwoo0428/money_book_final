@@ -53,9 +53,11 @@ public class MainActivity extends TabActivity {
                 editor.commit();
 
                 dbExpense.drop("DROP TABLE IF EXISTS MONEY_EX");
-                dbExpense.createTable("CREATE TABLE MONEY_EX( _id INTEGER PRIMARY KEY AUTOINCREMENT, expense INTEGER, category TEXT, year INTEGER, month INTEGER, day INTEGER);");
+                dbExpense.createTable("CREATE TABLE MONEY_EX( _id INTEGER PRIMARY KEY AUTOINCREMENT, expense INTEGER, category TEXT," +
+                        " date INTEGER, paymentMethod TEXT, description TEXT);");
                 dbIncome.drop("DROP TABLE IF EXISTS MONEY_IN");
-                dbIncome.createTable("CREATE TABLE MONEY_IN( _id INTEGER PRIMARY KEY AUTOINCREMENT, income INTEGER, category TEXT, year INTEGER, month INTEGER, day INTEGER);");
+                dbIncome.createTable("CREATE TABLE MONEY_IN( _id INTEGER PRIMARY KEY AUTOINCREMENT, income INTEGER, category TEXT," +
+                        " date INTEGER, paymentMethod TEXT, description TEXT);");
                 dbBudget.drop("DROP TABLE IF EXISTS MONEY_BUD");
                 dbBudget.createTable("CREATE TABLE MONEY_BUD( _id INTEGER PRIMARY KEY AUTOINCREMENT, budget INTEGER, period INTEGER);");
                 dbBudget.insert("insert into MONEY_BUD values(null, "+50000+", "+5+");");
@@ -88,9 +90,9 @@ public class MainActivity extends TabActivity {
         spec = mTabHost.newTabSpec("tab4").setIndicator("설정").setContent(intent);
         mTabHost.addTab(spec);
 
-        if(Loading.count == 0) {
+        if(temp.count == 0) {
             mTabHost.setCurrentTab(0);
-            Loading.count++;
+            temp.count++;
         }
 
     }
