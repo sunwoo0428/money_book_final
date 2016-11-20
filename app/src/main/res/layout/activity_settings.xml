@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:id="@+id/settings"
-    android:padding="120dp"
+    android:padding="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
         <Button
@@ -31,4 +31,9 @@
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:text="화폐 설정"/>
+        <TextView
+    android:id="@+id/datetest"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="날짜연습"/>
 </LinearLayout>

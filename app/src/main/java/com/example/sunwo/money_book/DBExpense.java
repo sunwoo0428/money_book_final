@@ -5,9 +5,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class DBExpense extends SQLiteOpenHelper {
 
    public ExpenseStruct[] expenseStructs = new ExpenseStruct[100];
+    public String[] days7db = new String[6];
+    public String[] days7graph = new String[9];
 
 
     public DBExpense(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -91,14 +97,40 @@ public class DBExpense extends SQLiteOpenHelper {
         return count;
     }
 
-    public int GetTotalExpense(){
+    public int GetTotalExpense(String selectedDate){
         SQLiteDatabase db = getReadableDatabase();
         int totalExpense = 0;
-        Cursor cursor = db.rawQuery("select expense from MONEY_EX", null);
+        int dateInt = Integer.parseInt(selectedDate);
+        Cursor cursor = db.rawQuery("select expense from MONEY_EX where date ="+dateInt, null);
         while(cursor.moveToNext()){
             totalExpense += cursor.getInt(0);
         }
         return totalExpense;
+    }
+
+    public void get7DaysAgoDb(int year , int month , int day) {
+        for(int i = 6;i>0;i--){
+            Calendar cal = Calendar
+                    .getInstance();
+            cal.set(year, month-1, day);
+            cal.add(Calendar.DATE, -i);
+            java.util.Date weekago = cal.getTime();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd",
+                    Locale.getDefault());
+            days7db[6-i] = formatter.format(weekago);
+        }
+    }
+    public void get7DaysAgoGraph(int year , int month , int day) {
+        for(int i = 6;i>=0;i--){
+            Calendar cal = Calendar
+                    .getInstance();
+            cal.set(year, month-1, day);
+            cal.add(Calendar.DATE, -i);
+            java.util.Date weekago = cal.getTime();
+            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd",
+                    Locale.getDefault());
+            days7graph[7-i] = formatter.format(weekago);
+        }
     }
 
  /*   public int GetWeekExpense(){
