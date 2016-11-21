@@ -1,0 +1,211 @@
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/inc_exp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+         <EditText
+        android:id="@+id/et_Amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+    android:textSize="30dp"
+        android:hint="금액을 입력하시오"/>
+
+    <LinearLayout
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+            
+            <Button
+        android:onClick="onClick"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_7"
+        android:textSize="50dp"
+        android:text="7"/>
+            <Button
+        android:onClick="onClick"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_8"
+        android:textSize="50dp"
+        android:text="8"/>
+            
+            <Button
+        android:onClick="onClick"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_9"
+        android:textSize="50dp"
+        android:text="9"/>
+            <Button
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_division"
+        android:textSize="50dp"
+        android:text="/"/>
+        </LinearLayout>
+    <LinearLayout
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+                
+                <Button
+        android:onClick="onClick"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_4"
+        android:textSize="50dp"
+        android:text="4"/>
+                <Button
+        android:onClick="onClick"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_5"
+        android:textSize="50dp"
+        android:text="5"/>
+                
+                <Button
+        android:onClick="onClick"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_6"
+        android:textSize="50dp"
+        android:text="6"/>
+                <Button
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_multi"
+        android:textSize="50dp"
+        android:text="*"/>
+            </LinearLayout>
+
+    <LinearLayout
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+                
+                <Button
+        android:onClick="onClick"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_1"
+        android:textSize="50dp"
+        android:text="1"/>
+                <Button
+        android:onClick="onClick"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_2"
+        android:textSize="50dp"
+        android:text="2"/>
+                
+                <Button
+        android:onClick="onClick"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_3"
+        android:textSize="50dp"
+        android:text="3"/>
+                <Button
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_sub"
+        android:textSize="50dp"
+        android:text="-"/>
+            </LinearLayout>
+
+    <LinearLayout
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+                
+                <Button
+        android:onClick="onClick"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_0"
+        android:textSize="50dp"
+        android:text="0"/>
+                <Button
+        android:onClick="onClick"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_result"
+        android:textSize="50dp"
+        android:text="="/>
+                
+                <Button
+        android:onClick="onClick"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_cancel"
+        android:textSize="50dp"
+        android:text="C"/>
+                <Button
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_plus"
+        android:textSize="50dp"
+        android:text="+"/>
+            </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/insertExpense1"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <Button
+        android:id="@+id/btn_insertEx"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="40dp"
+        android:text="지출"/>
+            <Button
+        android:id="@+id/btn_insertIn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="40dp"
+        android:text="수입"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/insertIncome"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
